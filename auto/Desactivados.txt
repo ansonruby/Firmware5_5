@@ -1,0 +1,5 @@
+#@reboot (sleep 10; python /home/pi/Firmware/app/Act_Power_IR.py) # Power_IR
+#@reboot (sleep 20; python /home/pi/Firmware/app/Act_Buzzer.py) # Buzzer
+#@reboot (sleep 20; python /home/pi/Firmware/app/Sen_QR.py) # Sen_QR
+#@reboot (sleep 35; python /home/pi/Firmware/app/Act_Boton_No_Touch.py) # Boton_No_Touch
+#@reboot (sleep 35; /home/pi/Firmware/sh/app_30_sleep.sh) # Teclado

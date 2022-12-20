@@ -1,0 +1,9 @@
+{
+  "server_update_time": 5,
+  "counter_password": "password",
+  "local_server_port": 8081,
+  "scanners_port": 1234,
+  "start_up_time": 5,
+  "save_logs": "True",
+  "counter_user": "recepcion@fusepong.com"
+}

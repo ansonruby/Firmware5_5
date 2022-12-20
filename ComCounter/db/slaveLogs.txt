@@ -1,0 +1,6 @@
+Slave logs
+Fecha: 2022-12-09
+[SERVER]= Waiting connection at 0.0.0.0:1234
+[SERVER]= Connected from ('127.0.0.1', 39318)
+[SERVER]= Waiting connection at 0.0.0.0:1234
+[SERVER]= New connection, total connection:1

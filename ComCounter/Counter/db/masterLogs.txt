@@ -1,0 +1,177 @@
+Counter master logs
+Fecha: 2022-12-09
+[Master]:Serving data in 0.0.0.0:8081
+[Socket from ws://0.0.0.0:1234/ to Master]:{"status": "1", "type": "delTickets"}//// 'new line' 6.h2.9da509f613bb819a8d6bae0cfb65dbe2.1670621707778.11.0.0 'new line' 6.h2.9da509f613bb819a8d6bae0cfb65dbe2.1670621741038.11.1.0 'new line' 6.h2.9da509f613bb819a8d6bae0cfb65dbe2.1670621755069.11.0.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"status": "1", "type": "update"}
+[Master to ws://0.0.0.0:1234/]:{"type": "updateDevice", "size": [46, 0], "status": "1"}//// 'new line' 12Fu09se2022pong
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' Rgb3HRkree0XiAZWuzmGdVvUiVRXO2wAYLJuDkC4dQ+3PBxIYKwPRKJTG1aALnnvO7Ap4PLFvRt24613/aFM4A==.g26tg
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"status": "1", "type": "delTickets"}//// 'new line' 6.g2yd3ny.6b0c5b99406e8745e00f2304c1ffe855.1670621762445.11.0.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"status": "1", "type": "delTickets"}//// 'new line' 6.h2.9bc0a6b8b29687a400fbbd97da3e8826.1670621766255.11.0.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' 6.9bc0a6b8b29687a400fbbd97da3e8826
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' 6.9da509f613bb819a8d6bae0cfb65dbe2
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"status": "1", "type": "delTickets"}//// 'new line' 6.h2.9da509f613bb819a8d6bae0cfb65dbe2.1670621774346.11.1.0 'new line' 6.g2yd3ny.6b0c5b99406e8745e00f2304c1ffe855.1670621776926.11.0.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' 6.9da509f613bb819a8d6bae0cfb65dbe2
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"status": "1", "type": "delTickets"}//// 'new line' jSarlc6t8IXLDZ9zywZ5L5e9nGCf3WrZR80gsDO7wjOBqnHB14mn5C68Lb8Vs/SLMqZ7zoYfAhb4K8jtSMIbdg==.g26tg 'new line' 6.g2yd3ny.6b0c5b99406e8745e00f2304c1ffe855.1670621783642.11.1.0
+[Socket from ws://0.0.0.0:1234/]:Error saving device authorization of qr jSarlc6t8IXLDZ9zywZ5L5e9nGCf3WrZR80gsDO7wjOBqnHB14mn5C68Lb8Vs/SLMqZ7zoYfAhb4K8jtSMIbdg==.g26tg = IndexError('list index out of range',)
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"status": "1", "type": "delTickets"}//// 'new line' jSarlc6t8IXLDZ9zywZ5L5e9nGCf3WrZR80gsDO7wjOBqnHB14mn5C68Lb8Vs/SLMqZ7zoYfAhb4K8jtSMIbdg==.g26tg.1670621785684.1.1.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' 6.9da509f613bb819a8d6bae0cfb65dbe2
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"status": "1", "type": "delTickets"}//// 'new line' 3wuKXyv8sjc5ZXckEKmEG52d+7rt9q75LAEZtiPDxg4DvO3/7S+yyxhWj3JcDY0jjPVdRaXP1HmS/xMZkj12TQ==.g26tg.1670621792742.1.0.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"status": "1", "type": "delTickets"}//// 'new line' 6.g2yd3ny.6b0c5b99406e8745e00f2304c1ffe855.1670621796779.11.0.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' .3def184ad8f4755ff269862ea77393dd
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access denied.-1
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' .c81e728d9d4c2f636f067f89cc14862c
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access denied.-1
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' AUEuRP1qYGIwwRjqKItkt4Xe3X97rEiF6wDuzMFbyLf22QuBCpVzgA5yX8nY8TsbLqlxFoi73c4HDy32/WvlAtvsag2/kGI5k25g==.g26tg
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' jqKItkt4Xe3X97rEiF6wDuzMFbyLf22QuBCpVzgA5yX8nY8TsbLqlxFoi73c4HDy32/WvlAtvsag2/kGI5k25g==.g26tg
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' UyHfFoP43utQUO1taYegOmjtIRDxrz3qusW2WC0Greu8M6p6XryK0OOQxq1GydhDX6ShKhI7GGJwrWq0zJ6TTw==.h2
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' 6.6b0c5b99406e8745e00f2304c1ffe855
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' Bizi4rGKWXSsKjuX7pALllzu5s+L8WKvSfv8VXiAtF+Pp4jfwVlrfGliMIbkzG2JOR51ZL2kdkMPwzKIV6pQxQ==.g26tg
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' 6SU5bD9ELZIFh7Opqmtkv7ULnbU8E+E55wKptsJ2+iYFOIYLMUCctc3XBz+r68LAwgRf7Y+dSgqT0h4vGAdg5g==.h2
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' 6.6b0c5b99406e8745e00f2304c1ffe855
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' 6.6b0c5b99406e8745e00f2304c1ffe855
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' 6.9bc0a6b8b29687a400fbbd97da3e8826
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' q9C30U5gd3tcmKi1hh+M33TH6JOVHxK5CVdw4HW3Gj216fndJBFVb6NBH/JKnqVQZLr4e42LBCuptVRgYF2Plg==.h2
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' 6.6b0c5b99406e8745e00f2304c1ffe855
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' XRMW0lNgRh+jnC6ILxsO4VefCbM+UUZZqycRd+SCNJH/Yq6rYCZMkl6PDlOGdd9Hx1Fd3v5m/WwIbwuxlKA20w==.g26tg
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' hoK8rWER13So7/M+KFHzd8TiISkeGC9eY7IPh7gQhC6cBRHPFBFhCxeaYOJgmpgY409E75QqT8WrGee0JsjsKA==.g26tg
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' 6.6b0c5b99406e8745e00f2304c1ffe855
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' Cb7infJzh1PcrhzRmnWjpgRTkkADqVMYo74LpBQgXufa7KSptQD6Gcwvyir7LWGmQVT8kXncVXInijhzEQh/gA==.h2
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' 6.6b0c5b99406e8745e00f2304c1ffe855
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' 6.6b0c5b99406e8745e00f2304c1ffe855
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' T44AJLiFmYPhXuPd15uSRvccyvnLp6LGVBMLdkBALyEe8BB8blKdXXB0GXPLcGWgJdxl7l7zUuZ8dxdt0oAdKA==.g26tg
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' T44AJLiFmYPhXuPd15uSRvccyvnLp6LGVBMLdkBALyEe8BB8blKdXXB0GXPLcGWgJdxl7l7zUuZ8dxdt0oAdKA==.g26tg
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' 6.6b0c5b99406e8745e00f2304c1ffe855
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' .3220ddeb9237a4aac35c62b59c9b57e4
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' .3220ddeb9237a4aac35c62b59c9b57e4
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' .941f16616a396bcf4a64813c0d533f56
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' .1fe6f08151bab8869f5e79273fe4b273
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access denied.-1
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' 6.9bc0a6b8b29687a400fbbd97da3e8826
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' 6.9da509f613bb819a8d6bae0cfb65dbe2
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' 6.9bc0a6b8b29687a400fbbd97da3e8826
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' .941f16616a396bcf4a64813c0d533f56
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' .941f16616a396bcf4a64813c0d533f56
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' 2TOk5wTfiOnTF2IUyObK3u3T7Rdeor37wi8E/UY4ThY+6JX4HdwKPoVTA9a1xz0XVKG1FxCgQL+uFaEM2dBn3g==.g26tg
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' 2TOk5wTfiOnTF2IUyObK3u3T7Rdeor37wi8E/UY4ThY+6JX4HdwKPoVTA9a1xz0XVKG1FxCgQL+uFaEM2dBn3g==.g26tg
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' e5qo8HBAV8We2WDPvQ0Dd1bUbyCBhx/voS+wxR6cFxLelnxsf+g1cfWEJzSKOQzF0Aazhm+2UtPIiLNLu/oZiQ==.g26tg
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' 6.9bc0a6b8b29687a400fbbd97da3e8826
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' 7hhynoRNecUgL4IQvQcxjTDGmojm7xNuids4lKPzVdtEy9Fkuwwf1TPbSZeJQhwdL52OCDPrNHJfsThiLFMwhQ==.g2yd3ny
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' 7hhynoRNecUgL4IQvQcxjRaOYQ3DuJubOHw4QOWY3Uxh/pDAwcFSBsttcOuyggbCQnUyRIvy+myznMDR5oRZwg==.g2yd3ny
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"status": "1", "type": "delTickets"}//// 'new line' qqdBEJrGdSDfRVfIOn2Ej3o4zgnQ+J/yBqE2q+4a4b6pHImTZT0JhuNn3Fb5iHBc/VD96Q+cjuL5TyC64wGaeA==.g2yd3ny.1670622240910.1.0.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' sH6qNWTCNHgUWXsBsX8DcLwZRAQbglxnLsEF9hC0Q+UIOYaPVODNTA+sE+LRKuxcCriT4EsrFJb+hoFV4ChmOA==.g2yd3ny
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' u/YIMvCNR54kOGIrq9Wc17H4w0VOUs/dDDHGAL3x/vDp0GXGkga7zXPYKksSJ14MpVQ2FpBYfzYb6pihrO++fg==.g2yd3ny
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' jrfnidy8QpySiAizXXZDk6iIsQkJgdYrLu8Ohxh9Jna5ufH8BrCvLxRZADztjbRrPdjU/zF3hu8TTMxxBtFKig==.g26tg
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' RqGMgGN/q8Cq8ZCs7B3JwY4g9fWF+ImPpgLAtY9OeUaL3tV3lEXm8VSqOIY1Oi7Ib5TOQ0WmZXK6L5LbMWc78w==.g2yd3ny
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' aBMAmEkgkb8dPlT2nUZHI1zG8VVR6QWcB84NaEyhhOmNQV9/e0mCF3oIGcgWegcTNnau/R0us60NQrsN1F/ytg==.g2yd3ny
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' orcJfVt74jlygQ49pdC8aSQcwuW6l5/oCaG+zcx/steuPQiDQmfMJKuzaa2Pe6OLw+rXHZahtttTBCgPLg3jbg==.g2yd3ny
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "1", "status": "1", "type": "authTicket"}//// 'new line' sSyPbR5IE7Am5Mcrio2NR49sSKfDqcBUeUyYtlVWpXhyQAKNiCzJAFVPx9ssfwUOiRftlX+yGzwxLpauvmlWKA==.g26tg
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-S.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' OEz7iS6odsRYY7FH7AkqZZTzBbs2B6QSEb8SN+IxhqTpF4csoIW45uW/mvUvrXAIiaT72RTjpLqdeQMhNTxDlQ==.g2yd3ny
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}
+[Socket from ws://0.0.0.0:1234/ to Master]:{"direction": "0", "status": "1", "type": "authTicket"}//// 'new line' YEOfkC/lPpm+Aq872w2PCi5ysW9km61dyp2HhCvtoondZs1HaXPsAoE7sWv9dMzw9lwHwg2BClN3fDA8StzsDQ==.g2yd3ny
+[Master to ws://0.0.0.0:1234/]:{"type": "authTicket", "size": 1, "status": "1"}//// 'new line' Access granted-E.0
+[Master to ws://0.0.0.0:1234/]:{"type": "recived", "status": "1"}

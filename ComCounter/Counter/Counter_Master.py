@@ -40,6 +40,7 @@ ACTIVE_MASTER_PATH = DB_DIR_NAME+"/activeConection.txt"
 COUNTER_LOGS_PATH = DB_DIR_NAME+"/masterLogs.txt"
 CONFIG_PATH = DB_DIR_NAME+"/config.json"
 ACTIVE_CONECTION = CURRENT_DIR_PATH+"/../db/flagtosend.txt"
+ACCESS_IN_LIST_PATH = DB_DIR_NAME+"/accessIn.txt"
 
 
 # Cloud server variables
@@ -57,6 +58,7 @@ local_server_port = 8090
 counter_user = ""
 counter_password = ""
 start_up_time = 0
+dinamic_access = True
 
 
 def Get_Rout_server():
@@ -268,6 +270,7 @@ def save_users(data):
 def auth_petition(qr, ws, direction="0"):
     try:
         qr_list = []
+        access_data_for_direction = ""
         data = qr.split(".")
         ans = False
         access_identifier = "1"
@@ -280,6 +283,7 @@ def auth_petition(qr, ws, direction="0"):
                 continue
             compare_data = compare_qr.split(".")
             if compare_data[0] == "6" and data[0] == "6" and compare_data[2] == data[1]:
+                access_data_for_direction = data[0]+data[1]
                 ans = True
                 if len(compare_data) > 3:
                     access_identifier = compare_data[3]
@@ -289,10 +293,12 @@ def auth_petition(qr, ws, direction="0"):
                     qr = compare_qr+".11"
                 break
             elif len(data) == 2 and len(compare_data) == 2 and data[1] == compare_data[0]:
+                access_data_for_direction = data[1]
                 access_identifier = "1"
                 ans = True
                 break
             elif len(data) == 2 and len(compare_data) == 2 and data[0] == "" and data[1] == compare_data[1]:
+                access_data_for_direction = data[1]
                 qr = "."+compare_data[0]
                 access_identifier = "2"
                 ans = True
@@ -333,15 +339,19 @@ def auth_petition(qr, ws, direction="0"):
                 ans = True
                 break
         if ans == True:
+
+            direction = define_in_out(access_data_for_direction, direction)
             with open(AUTH_LIST_PATH, 'a', encoding='utf-8', errors='replace') as dfw:
                 dfw.write(qr+"."+str(int(time.time()*1000.0)) +
-                          "."+access_identifier+"."+direction+".1."+str(ws.server_id)+"\n")
+                          "."+access_identifier+"."+str(direction)+".1."+str(ws.server_id)+"\n")
                 dfw.close()
-        return ans
+            return "Access granted-E.0" if direction == "0" else "Access granted-S.0"
+        else:
+            return "Access denied.-1"
     except Exception as e:
         print_logs("[Socket from "+str(ws.url) +
                    "]:Error authorizing qr "+qr+" = "+repr(e))
-        return False
+        return "Access denied.-1"
 
 
 def save_authorization(qr, ws):
@@ -604,13 +614,11 @@ def socket_on_message(ws, msg):
             if header["type"] == "authTicket":
                 access = ""
                 direction = "0" if not "direction" in header else header["direction"]
-                if auth_petition(req[1], ws, direction) == True:
-                    access = "Access granted-E.0" if direction == "0" else "Access granted-S.0"
-                else:
-                    access = "Access denied.-1"
+
+                access = auth_petition(req[1], ws, direction)
+
                 ans = json.dumps(
                     {'type': "authTicket", 'status': "1", 'size': 1})+"////\n"+access
-
                 ws.send(ans)
                 if ans:
                     print_logs("[Master to "+str(ws.url)+"]:"+str(ans))
@@ -719,6 +727,39 @@ def server_http():
     serve(app, host="0.0.0.0", port=local_server_port)
 
 
+def define_in_out(access_data, direction):
+    global dinamic_access
+    if dinamic_access:
+        direction = "0"
+        access_in = {}
+        access_in_text = ""
+        with open(ACCESS_IN_LIST_PATH, 'r', encoding='utf-8', errors='replace') as df:
+            access_in_text = df.read().strip()
+            df.close()
+        if access_in_text == "":
+            access_in_text = json.dumps({})
+        try:
+            access_in = ast.literal_eval(access_in_text)
+        except Exception as e:
+            print_logs("[Master]:Error reading access_in file " +
+                       str(ACCESS_IN_LIST_PATH)+" = "+repr(e))
+            print_logs("[Master]:Reset access_in file to default settings")
+            access_in = {}
+
+        if access_data in access_in:
+            access_in.pop(access_data)
+            direction = "1"
+        else:
+            access_in[access_data] = 1
+
+        access_in_text = json.dumps(access_in, indent=2)
+
+        with open(ACCESS_IN_LIST_PATH, 'w', encoding='utf-8', errors='replace') as dfw:
+            dfw.write(access_in_text)
+            dfw.close()
+    return direction
+
+
 def print_logs(text):
     if save_logs:
         with open(COUNTER_LOGS_PATH, 'a', encoding='utf-8', errors='replace') as dfw:
@@ -728,7 +769,7 @@ def print_logs(text):
 
 def config_counter():
     global DB_DIR_NAME, QR_LIST_PATH, LAST_LOGIN_LIST_PATH, AUTH_LIST_PATH, ACTIVE_MASTER_PATH, OFFLINE_LIST_PATH, CONFIG_PATH, COUNTER_LOGS_PATH
-    global scanners_port, local_server_port, server_update_time, save_logs, counter_user, counter_password, start_up_time
+    global scanners_port, local_server_port, server_update_time, save_logs, counter_user, counter_password, start_up_time, dinamic_access
     if not os.path.exists(DB_DIR_NAME):
         os.makedirs(DB_DIR_NAME)
     if not os.path.exists(QR_LIST_PATH):
@@ -748,6 +789,9 @@ def config_counter():
              errors='replace').close()
     if not os.path.exists(OFFLINE_LIST_PATH):
         open(OFFLINE_LIST_PATH, 'w', encoding='utf-8',
+             errors='replace').close()
+    if not os.path.exists(ACCESS_IN_LIST_PATH):
+        open(ACCESS_IN_LIST_PATH, 'w', encoding='utf-8',
              errors='replace').close()
     if not os.path.exists(COUNTER_LOGS_PATH):
         open(COUNTER_LOGS_PATH, 'w', encoding='utf-8',
@@ -806,6 +850,13 @@ def config_counter():
         configs_json["save_logs"] = str(
             str(save_logs).lower() == "True".lower())
 
+    if "dinamic_access" in configs_json:
+        dinamic_access = str(
+            configs_json["dinamic_access"]).lower() == "True".lower()
+    else:
+        configs_json["dinamic_access"] = str(
+            str(dinamic_access).lower() == "True".lower())
+
     configs = json.dumps(configs_json, indent=2)
 
     with open(CONFIG_PATH, 'w', encoding='utf-8', errors='replace') as dfw:
@@ -827,12 +878,12 @@ if __name__ == "__main__":
     time.sleep(0.8)
     while True:
         try:
-            exisṭ_other_connection = False
+            exist_other_connection = False
             if os.path.exists(ACTIVE_CONECTION):
                 with open(ACTIVE_CONECTION, 'r', encoding='utf-8', errors='replace') as df:
-                    exisṭ_other_connection = df.read().strip() != "3"
+                    exist_other_connection = df.read().strip() != "3"
                     df.close()
-            if not exisṭ_other_connection:
+            if not exist_other_connection:
                 ips = subprocess.getstatusoutput('hostname -I')
                 if ips[0] == 0 or start_up_time != 0:
                     await_time = 0
@@ -853,19 +904,10 @@ if __name__ == "__main__":
                     time.sleep(await_time)
                     if os.path.exists(ACTIVE_CONECTION):
                         with open(ACTIVE_CONECTION, 'r', encoding='utf-8', errors='replace') as df:
-                            exisṭ_other_connection = df.read().strip() != "3"
+                            exist_other_connection = df.read().strip() != "3"
                             df.close()
-                    if exisṭ_other_connection:
+                    if exist_other_connection:
                         continue
-                    if not os.path.exists(DB_DIR_NAME):
-                        os.makedirs(DB_DIR_NAME)
-                    if not os.path.exists(QR_LIST_PATH):
-                        open(QR_LIST_PATH, 'w', encoding='utf-8',
-                             errors='replace').close()
-                    if not os.path.exists(OFFLINE_LIST_PATH):
-                        open(OFFLINE_LIST_PATH, 'w', encoding='utf-8',
-                             errors='replace').close()
-
                     cloud_server_domain = Get_Rout_server()
                     credentials = log_in()
                     if credentials:

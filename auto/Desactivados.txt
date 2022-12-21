@@ -1,3 +1,8 @@
+#@reboot (sleep 10; sudo python3.5 /home/pi/Firmware/app/Act_Led_RGB.py) # Led
+#@reboot (sleep 15; python /home/pi/Firmware/app/lib/Serial_S0.py) # Serial
+#@reboot (sleep 20; python /home/pi/Firmware/app/lib/Serial_S2.py) # Serial
+#@reboot (sleep 25; python /home/pi/Firmware/app/lib/Serial_S1.py) # Serial
+#@reboot (sleep 40; python /home/pi/Firmware/app/Pro_Menu_Web.py) # Pro_Menu_Web
 #@reboot (sleep 10; python /home/pi/Firmware/app/Act_Power_IR.py) # Power_IR
 #@reboot (sleep 20; python /home/pi/Firmware/app/Act_Buzzer.py) # Buzzer
 #@reboot (sleep 20; python /home/pi/Firmware/app/Sen_QR.py) # Sen_QR

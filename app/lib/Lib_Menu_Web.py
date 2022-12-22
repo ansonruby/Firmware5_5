@@ -142,6 +142,7 @@ def Permisos_Web():
     commands.getoutput('sudo chmod -R 775 /var/www/html')
     commands.getoutput('sudo chmod -R g+s /var/www/html')
     commands.getoutput('sudo chown -R pi /var/www/html')
+    commands.getoutput('sudo chown -R www-data /home/pi/Firmware/ComCounter/Counter/db/config.json')
 #---------------------------------------------------------
 #----       Pagina restablecer metodo de restablecimeito
 #---------------------------------------------------------

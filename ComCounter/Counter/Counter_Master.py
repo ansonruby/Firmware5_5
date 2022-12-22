@@ -336,11 +336,12 @@ def auth_petition(qr, ws, direction="0"):
                     dfw.close()
                 break
             elif len(data) == 5 and len(compare_data) == 5 and compare_data[0] == "4" and ".".join(data[1:]) == ".".join(compare_data[1:]):
+                access_data_for_direction = ".".join(data[1:])
                 ans = True
                 break
         if ans == True:
-
-            direction = define_in_out(access_data_for_direction, direction)
+            if access_data_for_direction != "":
+                direction = define_in_out(access_data_for_direction, direction)
             with open(AUTH_LIST_PATH, 'a', encoding='utf-8', errors='replace') as dfw:
                 dfw.write(qr+"."+str(int(time.time()*1000.0)) +
                           "."+access_identifier+"."+str(direction)+".1."+str(ws.server_id)+"\n")

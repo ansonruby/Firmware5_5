@@ -32,7 +32,7 @@ from lib.Fun_Serial_S1 import *  # importar con los mismos nombres
 #-----------------------------------------------------------
 #                       CONSTANTES
 #-----------------------------------------------------------
-SQ_Mensajes  = 0                 # 0: NO print  1: Print
+SQ_Mensajes  = 1                 # 0: NO print  1: Print
 #Puerto_Serial   = '/dev/ttyUSB2'  # '/dev/ttyS0'
 
 print Puerto_Serial

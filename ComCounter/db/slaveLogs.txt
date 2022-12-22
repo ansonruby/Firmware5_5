@@ -1,6 +1,7 @@
 Slave logs
-Fecha: 2022-12-09
+Fecha: 2022-12-22
 [SERVER]= Waiting connection at 0.0.0.0:1234
-[SERVER]= Connected from ('127.0.0.1', 39318)
+[SERVER]= Connected from ('127.0.0.1', 45372)
 [SERVER]= Waiting connection at 0.0.0.0:1234
 [SERVER]= New connection, total connection:1
+[SERVER]= Error rreciving data header.authTicket.1 'new line' Access granted-S.0

@@ -11,7 +11,7 @@ SERVER_PORT = 8090
 AWAIT_TIME = 0.2
 AWAIT_PACKAGE_TIME = 0.02
 MAX_PACKAGE_BYTES_SIZE = 6000
-AWAIT_TIME_FROM_LAST_MESSAGE = 2
+AWAIT_TIME_FROM_LAST_MESSAGE = 3
 SHOW_PRINT_MSG = False
 
 DB_DIR_NAME = os.path.dirname(os.path.realpath(__file__))+"/db"
@@ -87,10 +87,24 @@ class WsEvents(Websocket):
     MASTER_PORT = SERVER_PORT
 
     def onLoop(self):
+        with open(RECIVED_DATA_PATH, 'r', encoding='utf-8', errors='replace') as ff:
+            data = ff.read()
+            ff.close()
+            if data != "" and time.time()-os.path.getmtime(RECIVED_FLAG_PATH) > self.DESCONECTION_MAX_TIME:
+                with open(RECIVED_DATA_PATH, 'r', encoding='utf-8', errors='replace') as df:
+                    data = df.read()
+                    df.close()
+                    print_logs("[SERVER]= Error rreciving data "+str(data))
+                with open(RECIVED_FLAG_PATH, 'w', encoding='utf-8', errors='replace') as ffw:
+                    ffw.write("")
+                    ffw.close()
+                with open(RECIVED_DATA_PATH, 'w', encoding='utf-8', errors='replace') as dfw:
+                    dfw.write("")
+                    dfw.close()
         with open(SEND_FLAG_PATH, 'r', encoding='utf-8', errors='replace') as ff:
             text = ff.read()
             ff.close()
-            if text == "3" or (text != "" and time.time()-os.path.getmtime(SEND_FLAG_PATH) > 3):
+            if text == "3" or (text != "" and time.time()-os.path.getmtime(SEND_FLAG_PATH) > self.DESCONECTION_MAX_TIME):
                 print_logs("[SERVER]= Error, closed for strange desconection")
                 with open(SEND_FLAG_PATH, 'w', encoding='utf-8', errors='replace') as ffw:
                     ffw.write("3")
@@ -164,7 +178,7 @@ class WsEvents(Websocket):
                 with open(RECIVED_FLAG_PATH, 'r', encoding='utf-8', errors='replace') as ff:
                     flagState = ff.read()
                     ff.close()
-                    if flagState == "" or int(time.time())-self.LAST_MESSAGE_TIME >= self.DESCONECTION_MAX_TIME:
+                    if flagState == "" or int(time.time())-self.LAST_MESSAGE_TIME >= self.DESCONECTION_MAX_TIME or time.time()-os.path.getmtime(RECIVED_FLAG_PATH) > self.DESCONECTION_MAX_TIME:
                         try:
                             accessList = requests.get(
                                 url="http://"+self.addr[0]+":"+str(self.MASTER_PORT)+"/scannersPetition", params={"scannerAccessKey": req[1]}, timeout=1)
@@ -186,7 +200,7 @@ class WsEvents(Websocket):
                 with open(RECIVED_FLAG_PATH, 'r', encoding='utf-8', errors='replace') as ff:
                     flagState = ff.read()
                     ff.close()
-                    if flagState == "" or int(time.time())-self.LAST_MESSAGE_TIME >= self.DESCONECTION_MAX_TIME:
+                    if flagState == "" or int(time.time())-self.LAST_MESSAGE_TIME >= self.DESCONECTION_MAX_TIME or time.time()-os.path.getmtime(RECIVED_FLAG_PATH) > self.DESCONECTION_MAX_TIME:
                         with open(RECIVED_DATA_PATH, 'w', encoding='utf-8', errors='replace') as dfw:
                             dfw.write(
                                 "header."+headerJson["type"]+"."+str(headerJson["size"])+"\n"+req[1])
@@ -210,7 +224,7 @@ class WsEvents(Websocket):
                 with open(SEND_FLAG_PATH, 'r', encoding='utf-8', errors='replace') as ff:
                     flagState = ff.read()
                     ff.close()
-                    if flagState == "2" or int(time.time())-self.LAST_MESSAGE_TIME >= self.DESCONECTION_MAX_TIME:
+                    if flagState == "2" or int(time.time())-self.LAST_MESSAGE_TIME >= self.DESCONECTION_MAX_TIME or time.time()-os.path.getmtime(RECIVED_FLAG_PATH) > self.DESCONECTION_MAX_TIME:
                         with open(SEND_DATA_PATH, 'w', encoding='utf-8', errors='replace') as dfw:
                             dfw.write("")
                             dfw.close()

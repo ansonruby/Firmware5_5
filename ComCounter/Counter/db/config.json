@@ -1,10 +1,10 @@
 {
+  "server_update_time": 5,
   "counter_password": "password",
-  "local_server_port": 8081,
   "start_up_time": 5,
+  "local_server_port": 8081,
   "counter_user": "counter@mail.com",
-  "dinamic_access": "true",
   "scanners_port": 1234,
   "save_logs": "False",
-  "server_update_time": 5
+  "dinamic_access": "False"
 }

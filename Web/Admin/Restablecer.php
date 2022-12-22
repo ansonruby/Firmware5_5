@@ -2,17 +2,34 @@
 <?php
 	include_once('./include/config.php');
 
-	function  Dominio()
-	{
-
-		$fh = fopen('/home/pi/Firmware/db/Config/Server/Dominio_Servidor.txt', 'r');
-		$linea = fgets($fh);
-		
-		fclose($fh);
+	function  Dominio()
 
-		
-
-	 return $linea;
+	{
+
+		//$fh = fopen('/home/pi/Firmware/db/Config/Server/Dominio_Servidor.txt', 'r');
+
+		//$linea = fgets($fh);
+
+		//fclose($fh);
+
+		$string = file_get_contents("/home/pi/Firmware/ComCounter/Counter/db/config.json");
+		if ($string === false) {
+			echo "Error";
+		}
+
+		$obj = json_decode($string, true);
+		if ($obj === null) {
+			echo "Error";
+		}
+		$obj['server_update_time']=8;
+		// foreach($obj as $key => $value) {
+		// 	echo $key . " => " . $value . "<br>";
+		//   }
+		echo json_encode($obj);
+		file_put_contents("/home/pi/Firmware/ComCounter/Counter/db/config.json",json_encode($obj,JSON_PRETTY_PRINT));
+
+		return $linea;
+
 	}
 	//echo Dominio();
 
@@ -176,20 +193,34 @@
 						<label for="button_command">Dominio:</label>
 						<input type="text" class="form-control" id="Servidor" 
 
-						<?php
+						<?php
 
-							//$Servidor=$_POST['Servidor'];
-							//echo "value='$Servidor'";
-							if (isset($_POST['Servidor'])){
-								$Servidor=$_POST['Servidor'];
-								echo "value='$Servidor'";
-							}
-							else {
-								if ( Dominio() != '') {
-									$Servidor=Dominio();
-									echo "value='$Servidor'";
-								}
-							}
+
+							//$Servidor=$_POST['Servidor'];
+
+							//echo "value='$Servidor'";
+
+							if (isset($_POST['Servidor'])){
+
+								$Servidor=$_POST['Servidor'];
+
+								echo "value='$Servidor'";
+
+							}
+
+							else {
+
+								if ( Dominio() != '') {
+
+									$Servidor=Dominio();
+
+									echo "value='$Servidor'";
+
+								}
+
+							}
+
+
 							?>
 						placeholder="Dominio.com" name="Servidor">
 					</div>

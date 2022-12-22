@@ -76,6 +76,7 @@
       sudo chmod -R 775 /var/www/html
       sudo chmod -R g+s /var/www/html
       sudo chown -R pi /var/www/html
+      sudo chown -R www-data /home/pi/Firmware/ComCounter/Counter/db/config.json
   else
     echo "no se colocaran permisos."
   fi

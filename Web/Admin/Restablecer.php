@@ -3,14 +3,15 @@
 	include_once('./include/config.php');
 
 	function  Dominio()
-
 	{
-
-		//$fh = fopen('/home/pi/Firmware/db/Config/Server/Dominio_Servidor.txt', 'r');
-
-		//$linea = fgets($fh);
-
-		//fclose($fh);
+		$fh = fopen('/home/pi/Firmware/db/Config/Server/Dominio_Servidor.txt', 'r');
+		$linea = fgets($fh);
+		fclose($fh);
+		return $linea;
+	}
+	/*
+	function  mmmm()
+	{
 
 		$string = file_get_contents("/home/pi/Firmware/ComCounter/Counter/db/config.json");
 		if ($string === false) {
@@ -22,16 +23,33 @@
 			echo "Error";
 		}
 		$obj['server_update_time']=8;
-		// foreach($obj as $key => $value) {
-		// 	echo $key . " => " . $value . "<br>";
-		//   }
+		foreach($obj as $key => $value) {
+		 	echo $key . " => " . $value . "<br>";
+		   }
 		echo json_encode($obj);
-		file_put_contents("/home/pi/Firmware/ComCounter/Counter/db/config.json",json_encode($obj,JSON_PRETTY_PRINT));
-
-		return $linea;
+		#file_put_contents("/home/pi/Firmware/ComCounter/Counter/db/config.json",json_encode($obj,JSON_PRETTY_PRINT));
 
 	}
-	//echo Dominio();
+	*/
+
+	function Data_Counter($Campo)
+	{
+		$string = file_get_contents("/home/pi/Firmware/ComCounter/Counter/db/config.json");
+		if ($string === false) {
+			echo "Error";
+		}
+
+		$obj = json_decode($string, true);
+		if ($obj === null) {
+			echo "Error";
+		}
+
+		return $obj[$Campo];
+
+	}
+
+//	echo Data_Counter('counter_password');
+
 
 
 	function  ValidarIP($ip)
@@ -75,7 +93,6 @@
 
  	 		if ($dato === $ip) $message = 'Verifique si esta bien escrito el dominio.';
  	 		else{
- 				#echo ValidarIP($ip);
  	 			if (ValidarIP($ip)==4){
  	 				$message = '';
 					$fh = fopen('./include/Control_Web.txt', 'w');
@@ -87,7 +104,31 @@
 
 	}
 
+	if(isset($_POST["Actualizar"]) ){
 
+			$string = file_get_contents("/home/pi/Firmware/ComCounter/Counter/db/config.json");
+			if ($string === false) {
+				echo "Error";
+			}
+
+			$obj = json_decode($string, true);
+			if ($obj === null) {
+				echo "Error";
+			}
+
+			$obj['counter_password']=$_POST['counter_password'];
+	 		$obj['local_server_port']=$_POST['local_server_port'];
+	 		$obj['start_up_time']=$_POST['start_up_time'];
+	 		$obj['counter_user']=$_POST['counter_user'];
+	 		$obj['dinamic_access']=$_POST['dinamic_access'];
+	 		$obj['scanners_port']=$_POST['scanners_port'];
+	 		$obj['save_logs']=$_POST['save_logs'];
+	 		$obj['server_update_time']=$_POST['server_update_time'];
+
+			file_put_contents("/home/pi/Firmware/ComCounter/Counter/db/config.json",json_encode($obj,JSON_PRETTY_PRINT));
+
+
+	}
 
 ?>
 
@@ -175,7 +216,10 @@
       </div>
 
 
-			<!-- -------------- Configuración Nuevo servidor -------------------------- -->
+
+
+
+			<!-- -------------- Configuraciónes  Counter -------------------------- -->
 			<div id="system-status" class="panel panel-default" style="margin-bottom: 5px">
 				<div class="panel-heading">
 					<h3 class="panel-title">Nuevo Servidor</h3>
@@ -191,7 +235,7 @@
 
 					<div class="form-group">
 						<label for="button_command">Dominio:</label>
-						<input type="text" class="form-control" id="Servidor" 
+						<input type="text" class="form-control" id="Servidor"
 
 						<?php
 
@@ -244,7 +288,195 @@
 				</div>
 			</div>
 
+			<!-- -------------- Configuración Counter -------------------------- -->
+			<div id="system-status" class="panel panel-default" style="margin-bottom: 5px">
+				<div class="panel-heading">
+					<h3 class="panel-title">Counter</h3>
+				</div>
+				<div class="panel-body">
 
+			<!-- --------------  -------------------------- -->
+
+			<form style="width: 100%;" class="create-button-form" id="formID" method="post" action="" class="formular" >
+				<!--
+				<table class="table table-hover">
+				<tbody>
+					<tr>
+							<td style="width:30%;vertical-align:middle; padding:8px;"><strong>Counter_user:</strong></td>
+								<td style="width:70%; vertical-align:middle; padding:8px;">
+									<span data-id="sysinfo_disk_space">
+													 <div class="input-group">
+														 <span class="input-group-addon">mail:</span>
+														 <input type="text" class="form-control" id="Tiempo" pattern="[1-9]"
+														 placeholder="1-9" name="Tiempo" required> <!-- title="Numeros entre 1 y 9." --
+													 </div>
+									</span>
+								</td>
+					</tr>
+
+
+				</tbody>
+				</table>
+				-->
+
+
+
+
+					<div class="form-group">
+						<label for="button_command">counter_user:</label>
+						<input type="text" class="form-control" id="counter_user"
+						<?php
+							if (isset($_POST['counter_user'])){
+								$counter_user=$_POST['counter_user'];
+								echo "value='$counter_user'";
+							}
+							else {
+									$counter_user=Data_Counter('counter_user');
+									echo "value='$counter_user'";
+							}
+							?>
+
+						placeholder="name@mail.com" name="counter_user">
+					</div>
+
+					<div class="form-group">
+						<label for="button_command">counter_password:</label>
+						<input type="text" class="form-control" id="counter_password"
+						<?php
+							if (isset($_POST['counter_password'])){
+								$counter_password=$_POST['counter_password'];
+								echo "value='$counter_password'";
+							}
+							else {
+									$counter_password=Data_Counter('counter_password');
+									echo "value='$counter_password'";
+							}
+							?>
+						placeholder="password" name="counter_password">
+					</div>
+
+					<div class="form-group">
+						<label for="button_command">local_server_port:</label>
+						<input type="text" class="form-control" id="local_server_port"
+						<?php
+							if (isset($_POST['local_server_port'])){
+								$local_server_port=$_POST['local_server_port'];
+								echo "value='$local_server_port'";
+							}
+							else {
+									$local_server_port=Data_Counter('local_server_port');
+									echo "value='$local_server_port'";
+							}
+							?>
+						placeholder="8080" name="local_server_port">
+					</div>
+
+					<div class="form-group">
+						<label for="button_command">scanners_port:</label>
+						<input type="text" class="form-control" id="scanners_port"
+						<?php
+							if (isset($_POST['scanners_port'])){
+								$scanners_port=$_POST['scanners_port'];
+								echo "value='$scanners_port'";
+							}
+							else {
+									$scanners_port=Data_Counter('scanners_port');
+									echo "value='$scanners_port'";
+							}
+							?>
+						placeholder="Dominio.com" name="scanners_port">
+					</div>
+
+					<div class="form-group">
+						<label for="button_command">start_up_time:</label>
+						<input type="text" class="form-control" id="start_up_time"
+						<?php
+							if (isset($_POST['start_up_time'])){
+								$start_up_time=$_POST['start_up_time'];
+								echo "value='$start_up_time'";
+							}
+							else {
+									$start_up_time=Data_Counter('start_up_time');
+									echo "value='$start_up_time'";
+							}
+							?>
+						placeholder="Dominio.com" name="start_up_time">
+					</div>
+
+
+
+					<div class="form-group">
+						<label for="button_command">dinamic_access:</label>
+						<input type="text" class="form-control" id="dinamic_access"
+						<?php
+							if (isset($_POST['dinamic_access'])){
+								$dinamic_access=$_POST['dinamic_access'];
+								echo "value='$dinamic_access'";
+							}
+							else {
+									$dinamic_access=Data_Counter('dinamic_access');
+									echo "value='$dinamic_access'";
+							}
+							?>
+						placeholder="Dominio.com" name="dinamic_access">
+					</div>
+
+
+					<div class="form-group">
+						<label for="button_command">server_update_time:</label>
+						<input type="text" class="form-control" id="server_update_time"
+						<?php
+							if (isset($_POST['server_update_time'])){
+								$server_update_time=$_POST['server_update_time'];
+								echo "value='$server_update_time'";
+							}
+							else {
+									$server_update_time=Data_Counter('server_update_time');
+									echo "value='$server_update_time'";
+							}
+							?>
+						placeholder="Dominio.com" name="server_update_time">
+					</div>
+
+
+
+					<div class="form-group">
+						<label for="button_command">save_logs:</label>
+						<input type="text" class="form-control" id="save_logs"
+						<?php
+							if (isset($_POST['save_logs'])){
+								$save_logs=$_POST['save_logs'];
+								echo "value='$save_logs'";
+							}
+							else {
+									$save_logs=Data_Counter('save_logs');
+									echo "value='$save_logs'";
+							}
+							?>
+						placeholder="Dominio.com" name="save_logs">
+					</div>
+
+
+
+
+
+					<input id="button" class="btn btn-default" type="submit" value="Actualizar" name="Actualizar"/>
+
+			</form>
+
+			<!-- ---------------------------------------------------------------- -->
+			<?php
+
+				if(!empty($message))
+				{
+					echo '<div class="alert alert-danger" role="alert" style="margin-bottom:20px;">'.$message.'</div>';
+				}
+
+			?>
+			<?php 	echo '<div id="ProcesoUnidad"> </div>';	?>
+
+				</div>
+			</div>
 
 
 

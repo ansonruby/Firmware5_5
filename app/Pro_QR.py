@@ -44,7 +44,7 @@ from lib.Fun_Tipo_QR import *   #
 #-------------------------------------------------------
 # inicio de variable	--------------------------------------
 
-PP_Mensajes = 1     # 0: NO print  1: Print
+PP_Mensajes = 0     # 0: NO print  1: Print
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------
@@ -590,21 +590,21 @@ def Accion_Torniquete (Res):
         #if PP_Mensajes: print "Access granted-E"
         Set_File(COM_LED , 'Access granted-E')
         Set_File(COM_RELE, 'Access granted-E')
-
+        Set_File(STATUS_USER, 'Permitido')
         Set_File(COM_TX_RELE, 'Access granted-E')
 
     elif Res == 'Access granted-S':
         #if PP_Mensajes: print "Access granted-S"
         Set_File(COM_LED , 'Access granted-S')
         Set_File(COM_RELE, 'Access granted-S')
-
+        Set_File(STATUS_USER, 'Permitido')
         Set_File(COM_TX_RELE, 'Access granted-E')
 
     else :
         #if PP_Mensajes: print "Denegado"
         Set_File(COM_LED, 'Error')
-
         Set_File(COM_TX_RELE, 'Error')
+        Set_File(STATUS_USER, '6')
 
 
 

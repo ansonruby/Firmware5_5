@@ -36,6 +36,7 @@ def Actividad_Rele(Direccion):
     GPIO.output(Rele[Direccion], GPIO.LOW)
     time.sleep(Tiempo_Rele)
     GPIO.output(Rele[Direccion], GPIO.HIGH)
+    Clear_File(STATUS_USER)
 
 
 #-----------------------------------------------------------
@@ -45,6 +46,8 @@ def Comando_Rele(Direccion): #modificar a COM_TX_RELE revizar funcionamiento
     if Direccion == 0:      Set_File(COM_TX_RELE,"¿00000004000" + str(Tiempo_Rele) + "?") #Entrar
     elif Direccion == 1:    Set_File(COM_TX_RELE,"¿00000004010" + str(Tiempo_Rele) + "?") #Salir
     elif Direccion == 2:    Set_File(COM_TX_RELE,"¿000000040300?")                        #Cerrar
+    time.sleep(Tiempo_Rele)
+    Clear_File(STATUS_USER)
 
 
 #-----------------------------------------------------------

@@ -40,7 +40,7 @@ from lib.Lib_Rout import *  # importar con los mismos nombres
 #                       CONSTANTES
 #-----------------------------------------------------------
 
-SQ_Mensajes = 1     # 0: NO print  1: Print
+SQ_Mensajes = 0     # 0: NO print  1: Print
 
 Puerto_Serial = '/dev/ttyS0'
 port = serial.Serial(Puerto_Serial, baudrate=9600, timeout=1)

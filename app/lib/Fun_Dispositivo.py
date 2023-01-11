@@ -36,7 +36,7 @@ def Get_ID_Dispositivo():
     Consecutivo     = ((Get_Line(INF_DISPO, 3)).replace("\n","")).replace("\r","")
     fech            = ((Get_Line(INF_DISPO, 2)).replace("\n","")).replace("\r","")
     ID = Caracte + fech + Get_MAC_addres() +Consecutivo
-    ID= 'ABDB11102022b827eb8d5a12000001'   # recepcion edificio fusepong
+    #ID= 'ABDB11102022b827eb8d5a12000001'   # recepcion edificio fusepong
     #ID= 'ABDB11102022b827eb8d5a12000002'   # puerta principal
     #ID= 'ABDB11102022b827eb8d5a12000003'   # porteria
     #ID= 'CCCB25022021b827eb5f6c3b000003'   # IF_CHI_13

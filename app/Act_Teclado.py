@@ -108,6 +108,8 @@ MAX_Constador_Red   = 80
 
 Estado_Usuario        = 0
 Estado_visual_Usuario = 0
+Contador_Usuario      = 0
+MAX_Contador_Usuario  = 7
 
 #--- Para Evento del QR repetido
 
@@ -621,8 +623,32 @@ def Pintar_Status_Red(red):
 def Evento_Estado_Usuario():
     #global Estado_Usuario
     global Estado_visual_Usuario
+    global Contador_Usuario
+    global MAX_Contador_Usuario
 
     Usuario = Get_File(STATUS_USER)
+
+    if '6' ==  Usuario or '3' ==  Usuario or '4' ==  Usuario or 'Permitido' ==  Usuario:
+
+    #if Estado_Informacion == 1:
+        Contador_Usuario = Contador_Usuario + 1
+        if Contador_Usuario == 1:                       # Avilitar visualizacion
+            Estado_visual_Usuario =1
+            return 1
+
+        if Contador_Usuario == MAX_Contador_Usuario-2:     # Desavilitar visualizacion
+            Estado_visual_Usuario =0
+            return 1
+
+        if Contador_Usuario >= MAX_Contador_Usuario:       # contador de timepo de duracion visualizacion
+            Contador_Usuario = 0
+            #Estado_Informacion =0
+            Clear_File(STATUS_USER)
+            return 1
+
+    return -1
+
+    """
 
     if '6' ==  Usuario or '3' ==  Usuario or '4' ==  Usuario or 'Permitido' ==  Usuario:
         #Estado_Usuario = Usuario
@@ -631,6 +657,7 @@ def Evento_Estado_Usuario():
     else:
         Estado_visual_Usuario = 0
         return -1
+    """
 
 #---   pintado de estados de los usaurios
 

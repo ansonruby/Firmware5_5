@@ -604,7 +604,9 @@ def Accion_Torniquete (Res):
         #if PP_Mensajes: print "Denegado"
         Set_File(COM_LED, 'Error')
         Set_File(COM_TX_RELE, 'Error')
+
         Set_File(STATUS_USER, '6')
+        Set_File(COM_RELE, 'Denegado')
 
 
 

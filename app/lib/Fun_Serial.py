@@ -358,6 +358,18 @@ def Decision_Tag(Tag):
 
 
 #---------------------------------------------------------------------------------------
+def Nueva_Avilitacion_portiempo_y_Tipo():
+    global FS_Mensajes, QR
+    #print 'Repe_Nueva habilitacion'
+    puntos = QR.count(".")
+    #print puntos
+
+    if puntos == 4:               #para tipo 3
+        if FS_Mensajes: print 'R_Avi Tipo 3: '+QR
+        Activar_QR()
+    else:
+        if FS_Mensajes: print 'Repetido'
+
 
 def Decision_Qr(x):
     global FS_Mensajes, QR, QR_antes, T_Nuev_QR, T_Repe_QR, T_Maximo
@@ -376,7 +388,7 @@ def Decision_Qr(x):
         #print 'T_Diferencia: ' + str(T_transcurido)
         if T_transcurido >= T_Maximo :
             T_Nuev_QR = T_Repe_QR = time.time()
-            #Nueva_Avilitacion_portiempo_y_Tipo()
+            Nueva_Avilitacion_portiempo_y_Tipo()
         else:
             if FS_Mensajes: print 'Repetido'
             #Set_File(STATUS_REPEAT_QR, '2')    # Estado QR repetido

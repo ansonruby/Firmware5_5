@@ -1,10 +1,10 @@
 {
-  "local_server_port": 8081,
-  "counter_password": "password",
-  "server_update_time": 5,
-  "save_logs": "False",
-  "dinamic_access": "False",
-  "scanners_port": 1234,
-  "counter_user": "taquilla.reja@fusepong.com",
-  "start_up_time": 5
+	"local_server_port": 8081,
+	"counter_password": "password",
+	"server_update_time": 5,
+	"save_logs": "False",
+	"dinamic_access": "False",
+	"scanners_port": 1234,
+	"counter_user": "counter@mail.com",
+	"start_up_time": 5
 }

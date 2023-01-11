@@ -222,8 +222,10 @@ def get_users():
 
 def save_users(data):
     granted_users = []
-    granted_users.extend(data["data"])
-    granted_users.extend(data["invitations"])
+    if "data" in data:
+        granted_users.extend(data["data"])
+    if "invitations" in data:
+        granted_users.extend(data["invitations"])
     with open(QR_LIST_UPDATED_PATH, 'w', encoding='utf-8', errors='replace') as dfw:
         dfw.write("\n".join(granted_users)+"\n")
         dfw.close()

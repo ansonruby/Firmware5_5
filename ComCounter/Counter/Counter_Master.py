@@ -211,7 +211,8 @@ def get_users():
                 dfw.close()
     petition = requests.get(
         url=cloud_server_domain+"/api/access/get_granted_users_pi",
-        params={"bookingOffice_id": bookingOffice_id},
+        params={"bookingOffice_id": bookingOffice_id,
+                "update_time": server_update_time},
         headers={'X-Device-ID': str(DEVICE_CURRENT_UUID),
                  "Authorization": "Bearer "+login_token},
         timeout=max_petition_timeout)
@@ -826,12 +827,12 @@ def config_counter():
         configs_json["counter_password"] = counter_password
 
     if "scanners_port" in configs_json:
-        scanners_port = configs_json["scanners_port"]
+        scanners_port = int(configs_json["scanners_port"])
     else:
         configs_json["scanners_port"] = scanners_port
 
     if "local_server_port" in configs_json:
-        local_server_port = configs_json["local_server_port"]
+        local_server_port = int(configs_json["local_server_port"])
     else:
         configs_json["local_server_port"] = local_server_port
 

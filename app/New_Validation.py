@@ -51,7 +51,7 @@ def Filtro_Tipos_QR_Antiguo(access_code, medio_acceso=1, lectora=0):
         elif len(access_data) == 5:
             tipo_acceso = 4
         if tipo_acceso:
-            Validar_QR_Antiguo(
+            Validar_Acceso(
                 access_data, tipo_acceso, medio_acceso, lectora)
         else:
             print "Invalid data of access"

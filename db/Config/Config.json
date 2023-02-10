@@ -1,0 +1,64 @@
+{
+    "Firmware": {
+        "Nombre": "Firmware6_0",
+        "Vercion": "2022.11.11.0"
+    },
+    "HUB": {
+        "Mejor_Coneccion": "1011",
+        "Ser_Dominio": "staging.fusepong.com",
+        "Ser_Ip": "35.88.204.191",
+        "Zona": "America/Bogota"
+    },
+    "Lectoras": [
+        {
+            "Locacion": "S0",
+            "Nombre": "QR600-VHK-E",
+            "Puerto": "0"
+        },
+        {
+            "Locacion":"S0",
+            "Nombre": "QR600-VHK-E",
+            "Puerto": "1"
+        }
+    ],
+    "Mod_Actualizaciones":
+        {
+            "Time_Sleep_Mod": "2",
+            "Usuarios_Periodo": "False",
+            "Usuarios_Time": "05:38 PM",
+            "Usuarios_Inicio": "True",
+            "Actualizaciones_Periodo": "10"
+        },
+    "Mod_Procesamiento":
+        {
+            "Time_Sleep_Mod": "0.3",
+            "Lectura_QR":"True",
+            "Lectura_Teclado":"True",
+            "Lectura_NFC":"True"
+        },
+    "Mod_Respuesta":
+        {
+            "Time_Sleep_Mod": "0.5"
+        },
+    "Mod_Serial":
+        {
+            "Time_Sleep_Mod": "0.5"
+        },
+    "Mod_Validacion":
+        {
+            "Configuracion_Acceso": "Acceso fisico"
+        },
+    "Reles": [
+        {
+            "Locacion": "S0",
+            "Puerto": "0",
+            "Direccion": "I",
+            "Tiempo": "1",
+            "Tipo": "Rele"
+        }
+    ],
+    "Teclado": {
+        "Tiempo": "1",
+        "Visualizar": "Flecha"
+    }
+}

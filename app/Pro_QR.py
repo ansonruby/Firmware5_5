@@ -44,7 +44,7 @@ from lib.Fun_Tipo_QR import *   #
 #-------------------------------------------------------
 # inicio de variable	--------------------------------------
 
-PP_Mensajes = 0     # 0: NO print  1: Print
+PP_Mensajes = 1     # 0: NO print  1: Print
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------
@@ -93,7 +93,7 @@ def Decision_General(Canal):
         Status_Peticion_Server = Decision_Server(R_Q,T_A)
         if Status_Peticion_Server != -2:
             if Status_Peticion_Server == -1: # Error en el servidor
-                Status_Peticion_Counter = Decision_Dispositivo(R_Q,T_A)
+                Status_Peticion_Counter = Decision_Dispositivo(R_Q,T_A,Canal)
                 if  Status_Peticion_Counter != -2:
                     if  Status_Peticion_Counter == -1:# Error en el  Dispositivo
                         Accion_Torniquete ('Error') # Qr no valido
@@ -105,12 +105,20 @@ def Decision_General(Canal):
         Status_Peticion_Counter = Decision_Counter(R_Q,T_A,Canal)
         if Status_Peticion_Counter != -2:
             if Status_Peticion_Counter == -1: # Error en el counter
-                Status_Peticion_Dispo = Decision_Dispositivo(R_Q,T_A)
+                Status_Peticion_Dispo = Decision_Dispositivo(R_Q,T_A,Canal)
                 if  Status_Peticion_Dispo != -2:
                     if  Status_Peticion_Dispo == -1:# Error en el  Dispositivo
                         Accion_Torniquete ('Error') # Qr no valido
                 else: Accion_Torniquete ('Error') # Qr no valido
         else: Accion_Torniquete ('Error') # Qr no valido
+    # ---------------------------------------------------------
+    elif  Prioridad == '2':
+        Status_Peticion_Dispo = Decision_Dispositivo(R_Q,T_A,Canal)
+        if  Status_Peticion_Dispo != -2:
+            if  Status_Peticion_Dispo == -1:# Error en el  Dispositivo
+                Accion_Torniquete ('Error') # Qr no valido
+            else: Accion_Torniquete ('Error') # Qr no valido
+
     # ---------------------------------------------------------
     else: Accion_Torniquete ('Error') # no hay prioridad
 
@@ -402,7 +410,7 @@ def Decision_Maestro_dispositivo(QR, Tiempo_Actual):
 #---------------------------------------------------------
 #----       Ruta para que autorise el Dispositivo
 #---------------------------------------------------------
-def Decision_Dispositivo(QR, Tiempo_Actual):
+def Decision_Dispositivo(QR, Tiempo_Actual,Canal):
     global PP_Mensajes
 
     if PP_Mensajes: print 'Autorisa el Dispositivo'
@@ -419,7 +427,8 @@ def Decision_Dispositivo(QR, Tiempo_Actual):
             print 'Pos_linea:'+ str(Pos_linea)
 
         if Resp.find("Denegado") == -1:                           # Entradas/Salidas Autorizadas
-            Accion_Torniquete (Resp)
+            #Accion_Torniquete (Resp)
+            Accion_Torniquete_Canal (Resp,Canal)
 
 
             Dato = Guardar_Autorizacion_General_Tipo_1_1(QR, Tiempo_Actual, Pos_linea, Resp, '1') # guardar un registro de lo autorizado
@@ -432,7 +441,8 @@ def Decision_Dispositivo(QR, Tiempo_Actual):
 
             return 1                                                # funcionamiento con normalidad
         else :                                                      # denegado
-            Accion_Torniquete (Resp)
+            #Accion_Torniquete (Resp)
+            Accion_Torniquete_Canal (Resp,Canal)
             return 1                                                # funcionamiento con normalidad
     #------------------------------------------------------------------------------------------------------------
     if  Validacion == 'T1': #falta enviar al counter
@@ -443,7 +453,8 @@ def Decision_Dispositivo(QR, Tiempo_Actual):
             print 'Pos_linea:'+ str(Pos_linea)
 
         if Resp.find("Denegado") == -1:                           # Entradas/Salidas Autorizadas
-            Accion_Torniquete (Resp)
+            #Accion_Torniquete (Resp)
+            Accion_Torniquete_Canal (Resp,Canal)
 
             Guardar_Autorizacion_Usuario_Tipos('T1', QR, Resp, '0')
             #Pos_linea = Buscar_Autorizados_ID_Tipo_1(QR)
@@ -460,8 +471,9 @@ def Decision_Dispositivo(QR, Tiempo_Actual):
                 Enviar_Autorizado_Counter(Dato) # envio general
 
             return 1                                                # funcionamiento con normalidad
-        else :                                                      # denegado
-            Accion_Torniquete (Resp)
+        else :
+            #Accion_Torniquete (Resp)
+            Accion_Torniquete_Canal (Resp,Canal)
             return 1                                                # funcionamiento con normalidad
     #------------------------------------------------------------------------------------------------------------
     if  Validacion == 'T2': #falta enviar al counter
@@ -472,7 +484,9 @@ def Decision_Dispositivo(QR, Tiempo_Actual):
             print 'Pos_linea:'+ str(Pos_linea)
 
         if Resp.find("Denegado") == -1:                           # Entradas/Salidas Autorizadas
-            Accion_Torniquete (Resp)
+            #Accion_Torniquete (Resp)
+            Accion_Torniquete_Canal (Resp,Canal)
+
             Pos_linea = Buscar_Autorizados_ID_Tipo_2(QR)
             Dato = Guardar_Autorizacion_General_Tipo_2(QR, Tiempo_Actual, Pos_linea, Resp, '1') # guardar un registro de lo autorizado
             #----desicion a quie envio lo autorizado
@@ -484,7 +498,8 @@ def Decision_Dispositivo(QR, Tiempo_Actual):
 
             return 1                                                # funcionamiento con normalidad
         else :                                                      # denegado
-            Accion_Torniquete (Resp)
+            #Accion_Torniquete (Resp)
+            Accion_Torniquete_Canal (Resp,Canal)
             return 1                                                # funcionamiento con normalidad
     #------------------------------------------------------------------------------------------------------------
     if  Validacion == 'T2_1': #falta enviar al counter
@@ -495,7 +510,8 @@ def Decision_Dispositivo(QR, Tiempo_Actual):
             print 'Pos_linea:'+ str(Pos_linea)
 
         if Resp.find("Denegado") == -1:                           # Entradas/Salidas Autorizadas
-            Accion_Torniquete (Resp)
+            #Accion_Torniquete (Resp)
+            Accion_Torniquete_Canal (Resp,Canal)
             Pos_linea = Buscar_Autorizados_ID_Tipo_2_1(QR)
             Guardar_Autorizacion_Tipo_2_1(QR, Tiempo_Actual, Pos_linea, Resp, '1') # guardar un registro de lo autorizado
             #----desicion a quie envio lo autorizado
@@ -506,7 +522,8 @@ def Decision_Dispositivo(QR, Tiempo_Actual):
                 Enviar_Autorizado_Counter(Dato) # envio general
             return 1                                                # funcionamiento con normalidad
         else :                                                      # denegado
-            Accion_Torniquete (Resp)
+            #Accion_Torniquete (Resp)
+            Accion_Torniquete_Canal (Resp,Canal)
             return 1                                                # funcionamiento con normalidad
     #------------------------------------------------------------------------------------------------------------
     if  Validacion == 'T3': #falta enviar al counter
@@ -522,7 +539,8 @@ def Decision_Dispositivo(QR, Tiempo_Actual):
             if Ventana == 1:
 
                 Registro = QR + "." + Tiempo_Actual + ".1.0.1." + Incremento
-                Accion_Torniquete (Resp)                                # Aciones del disposivo
+                #Accion_Torniquete (Resp)
+                Accion_Torniquete_Canal (Resp,Canal)                                # Aciones del disposivo
                 Guardar_Autorizacion_Tipo_3(Registro)                   # Guardado interno
                 #----desicion a quie envio lo autorizado
                 Prioridad = Get_File(CONF_AUTORIZACION_QR).strip()
@@ -534,16 +552,19 @@ def Decision_Dispositivo(QR, Tiempo_Actual):
 
             else:
                 if PP_Mensajes: print 'Resp: '+'Denegado'
-                Accion_Torniquete ('Denegado')
+                #Accion_Torniquete ('Denegado')
+                Accion_Torniquete_Canal ('Denegado', Canal)
                 return 1                                                # funcionamiento con normalidad
         else:
             if PP_Mensajes: print 'Resp: '+'Denegado'
-            Accion_Torniquete ('Denegado')
+            #Accion_Torniquete ('Denegado')
+            Accion_Torniquete_Canal ('Denegado', Canal)
             return 1                                                # funcionamiento con normalidad
     #------------------------------------------------------------------------------------------------------------
     else:   #No cumple parametros o nuevo formatos
         if PP_Mensajes: print 'No cumple parametros'
-        Accion_Torniquete ("Denegado")
+        #Accion_Torniquete ('Denegado')
+        Accion_Torniquete_Canal ('Denegado', Canal)
         return -2                                                # funcionamiento con normalidad
     #------------------------------------------------------------------------------------------------------------
 
@@ -580,6 +601,41 @@ def Decision_Dispositivo(QR, Tiempo_Actual):
 #               Acciones en el Actuador (torniquete) y visualizadores
 #-------------------------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------------------------
+
+
+def Accion_Torniquete_Canal (Res, Canal):
+    global PP_Mensajes
+
+    Res=Res.rstrip('\n')            # eliminar caracteres extras
+    Res=Res.rstrip('\r')            # eliminar caracteres extras
+
+    if Res == 'Access granted-E':
+        #if PP_Mensajes: print "Access granted-E"
+        Set_File(COM_LED , 'Access granted-E')
+        if Canal == 0: Set_File(COM_RELE_S0, 'Access granted-E')
+        if Canal == 1: Set_File(COM_RELE_S1, 'Access granted-E')
+        if Canal == 2: Set_File(COM_RELE_S2, 'Access granted-E')
+        Set_File(STATUS_USER, 'Permitido')
+        #Set_File(COM_TX_RELE, 'Access granted-E')
+
+    elif Res == 'Access granted-S':
+        #if PP_Mensajes: print "Access granted-S"
+        Set_File(COM_LED , 'Access granted-S')
+        if Canal == 0: Set_File(COM_RELE_S0, 'Access granted-S')
+        if Canal == 1: Set_File(COM_RELE_S1, 'Access granted-S')
+        if Canal == 2: Set_File(COM_RELE_S2, 'Access granted-S')
+        Set_File(STATUS_USER, 'Permitido')
+        #Set_File(COM_TX_RELE, 'Access granted-E')
+
+    else :
+        #if PP_Mensajes: print "Denegado"
+        Set_File(COM_LED, 'Error')
+        #Set_File(COM_TX_RELE, 'Error')
+
+        Set_File(STATUS_USER, '6')
+        Set_File(COM_RELE, 'Denegado')
+
+
 def Accion_Torniquete (Res):
     global PP_Mensajes
 
@@ -589,24 +645,24 @@ def Accion_Torniquete (Res):
     if Res == 'Access granted-E':
         #if PP_Mensajes: print "Access granted-E"
         Set_File(COM_LED , 'Access granted-E')
-        Set_File(COM_RELE, 'Access granted-E')
+        #Set_File(COM_RELE, 'Access granted-E')
         Set_File(STATUS_USER, 'Permitido')
-        Set_File(COM_TX_RELE, 'Access granted-E')
+        #Set_File(COM_TX_RELE, 'Access granted-E')
 
     elif Res == 'Access granted-S':
         #if PP_Mensajes: print "Access granted-S"
         Set_File(COM_LED , 'Access granted-S')
-        Set_File(COM_RELE, 'Access granted-S')
+        #Set_File(COM_RELE, 'Access granted-S')
         Set_File(STATUS_USER, 'Permitido')
-        Set_File(COM_TX_RELE, 'Access granted-E')
+        #Set_File(COM_TX_RELE, 'Access granted-E')
 
     else :
         #if PP_Mensajes: print "Denegado"
         Set_File(COM_LED, 'Error')
-        Set_File(COM_TX_RELE, 'Error')
+        #Set_File(COM_TX_RELE, 'Error')
 
         Set_File(STATUS_USER, '6')
-        Set_File(COM_RELE, 'Denegado')
+        #Set_File(COM_RELE, 'Denegado')
 
 
 

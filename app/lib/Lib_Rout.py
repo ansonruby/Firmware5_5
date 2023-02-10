@@ -86,10 +86,12 @@ CONF_DIREC_RELE = FIRM + CONF + 'Rele/Direccion_Rele.txt'               # Config
 CONF_COMU_RELE  = FIRM + CONF + 'Rele/Tipo_Rele.txt'                    # Configuracion de tipo de relevos
 COM_TX_RELE     = FIRM + COMMA + 'Rele/Com_Tx_Rele.txt'                 # Comando de comunicaiones relevos serial
 COM_RELE        = FIRM + COMMA + 'Rele/Com_Rele.txt'                    # Comando relevos
+
 """
 COM_RELE_S0            = FIRM + COMMA + 'Rele/Com_Rele_S0.txt'                             # Comando relevos
 COM_RELE_S1            = FIRM + COMMA + 'Rele/Com_Rele_S1.txt'                             # Comando relevos
 COM_RELE_S2            = FIRM + COMMA + 'Rele/Com_Rele_S2.txt'                             # Comando relevos
+
 
 #---------------------------------------------------------------------------------------
 #                                  Buzzer 5V
@@ -214,3 +216,11 @@ PILA_MODBUS               = FIRM + COMMA + 'Serial_Modbus/PILA_Modbus.txt'      
 
 ID_MOD_USUARIOS           = FIRM + COMMA + 'Serial_Modbus/ID_MOD_Usuarios.txt'                      # Datos leidos del Nfc
 ID_MOD_RELES               = FIRM + COMMA + 'Serial_Modbus/ID_MOD_Reles.txt'                      # Datos leidos del Nfc
+
+#---------------------------------------------------------------------------------------
+#                                   Modulo respuesta
+#---------------------------------------------------------------------------------------
+
+COM_RES               = FIRM + COMMA + 'Mod_Respuesta/Com_Res.txt'
+COM_RES_S1            = FIRM + COMMA + 'Mod_Respuesta/Com_Res_S1.txt'
+COM_RES_S2            = FIRM + COMMA + 'Mod_Respuesta/Com_Res_S2.txt'

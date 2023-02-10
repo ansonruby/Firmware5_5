@@ -86,6 +86,8 @@ CONF_DIREC_RELE = FIRM + CONF + 'Rele/Direccion_Rele.txt'               # Config
 CONF_COMU_RELE  = FIRM + CONF + 'Rele/Tipo_Rele.txt'                    # Configuracion de tipo de relevos
 COM_TX_RELE     = FIRM + COMMA + 'Rele/Com_Tx_Rele.txt'                 # Comando de comunicaiones relevos serial
 COM_RELE        = FIRM + COMMA + 'Rele/Com_Rele.txt'                    # Comando relevos
+COM_RELE_S1        = FIRM + COMMA + 'Rele/Com_Rele.txt'                    # Comando relevos
+COM_RELE_S2        = FIRM + COMMA + 'Rele/Com_Rele.txt'                    # Comando relevos
 
 #---------------------------------------------------------------------------------------
 #                                  Buzzer 5V

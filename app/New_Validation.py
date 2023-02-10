@@ -29,7 +29,8 @@ def Filtro_Tipos_Acceso(access_code, medio_acceso=1, lectora=0):
         else:
             print "Invalid data of access"
     except Exception as e:
-        print e
+        pass
+        # print e
 
 
 def Filtro_Tipos_QR_Antiguo(access_code, medio_acceso=1, lectora=0):
@@ -53,15 +54,14 @@ def Filtro_Tipos_QR_Antiguo(access_code, medio_acceso=1, lectora=0):
         if tipo_acceso:
             Validar_Acceso(
                 access_data, tipo_acceso, medio_acceso, lectora)
-        else:
-            print "Invalid data of access"
 
 
 def Validar_Acceso(access_data, tipo_acceso, medio_acceso, lectora):
+
     ans = False
     if medio_acceso == 1:
         ans = Validar_QR_Antiguo(access_data, tipo_acceso, lectora)
-        access_data = ".".join(access_data)
+
     elif medio_acceso == 2:
         ans = Validar_PIN(access_data, tipo_acceso, lectora)
     elif medio_acceso == 11:
@@ -69,19 +69,21 @@ def Validar_Acceso(access_data, tipo_acceso, medio_acceso, lectora):
 
     respuesta_acceso = "Access denied"
     if ans:
-        respuesta_acceso = ans
-        read_time = int(time.time()*1000)
-        direction = "0" if ans == "Access granted-E" else "1"
-        athorization_code = access_data + "."+str(read_time) + \
-            "."+str(medio_acceso) + "."+direction+"."+"1"
-        Add_Line_End(
-            TAB_ENV_SERVER,
-            athorization_code+"\n"
-        )
+        respuesta_acceso, in_out_data = ans
+        if respuesta_acceso != "Access denied":
+            read_time = int(time.time()*1000)
+            direction = "0" if ans == "Access granted-E" else "1"
+
+            athorization_code = in_out_data + "."+str(read_time) + \
+                "."+str(medio_acceso) + "."+direction+"."+"1"
+            Add_Line_End(
+                TAB_ENV_SERVER,
+                athorization_code+"\n"
+            )
     comand_res = [
-        COM_RELE,
-        COM_RELE_S1,
-        COM_RELE_S2
+        COM_RES,
+        COM_RES_S1,
+        COM_RES_S2
     ]
 
     # Envio modulo respuesta
@@ -91,7 +93,7 @@ def Validar_Acceso(access_data, tipo_acceso, medio_acceso, lectora):
 def Validar_QR_Antiguo(access_data, tipo_acceso, lectora):
     access_valido = False
     access_key = False
-    if tipo_acceso == 1:
+    if tipo_acceso in [1, 4]:
         access_key = access_data[1]
         db = Get_File(TAB_USER_TIPO_1).strip().split("\n")
         for access_db in db:
@@ -100,7 +102,13 @@ def Validar_QR_Antiguo(access_data, tipo_acceso, lectora):
 
             key_db = access_db.split(".")[0]
             if access_key == key_db:
-                access_valido = True
+                read_time_sec = int(time.time())
+                if tipo_acceso == 4:
+                    if int(access_data[2]) < read_time_sec and int(access_data[3]) > read_time_sec:
+                        access_valido = True
+                else:
+                    access_valido = True
+
                 break
     elif tipo_acceso == 3:
         access_key = ".".join(access_data[0:3])
@@ -113,16 +121,6 @@ def Validar_QR_Antiguo(access_data, tipo_acceso, lectora):
                 access_key = False
                 access_valido = True
                 break
-    elif tipo_acceso == 4:
-        access_key = ".".join(access_data[1:5])
-        db = Get_File(TAB_USER_TIPO_1).strip().split("\n")
-        for access_db in db:
-            if access_data == "":
-                continue
-            key_db = ".".join(access_db.split(".")[1:5])
-            if access_key == key_db:
-                access_valido = True
-                break
 
     respuesta_acceso = "Access denied"
 
@@ -130,12 +128,15 @@ def Validar_QR_Antiguo(access_data, tipo_acceso, lectora):
         direction = str(lectora % 2)
         respuesta_acceso = "Access granted-E" if direction == "0" else "Access granted-S"
 
-    return respuesta_acceso
+    in_out_data = ".".join(access_data)
+
+    return [respuesta_acceso, in_out_data]
 
 
 def Validar_PIN(access_data, tipo_acceso, lectora):
     access_valido = False
     access_key = False
+    key_db = False
     if tipo_acceso == 1:
         access_key = MD5(access_data)
         db = Get_File(TAB_USER_TIPO_1).strip().split("\n")
@@ -151,12 +152,15 @@ def Validar_PIN(access_data, tipo_acceso, lectora):
         direction = str(lectora % 2)
         respuesta_acceso = "Access granted-E" if direction == "0" else "Access granted-S"
 
-    return respuesta_acceso
+    in_out_data = "."+str(key_db)
+
+    return [respuesta_acceso, in_out_data]
 
 
 def Validar_NFC(access_data, tipo_acceso, lectora):
     access_valido = False
     access_key = False
+    key_db = False
     if tipo_acceso == 6:
         access_key = MD5(access_data)
         db = Get_File(TAB_USER_TIPO_6).strip().split("\n")
@@ -172,7 +176,9 @@ def Validar_NFC(access_data, tipo_acceso, lectora):
         direction = str(lectora % 2)
         respuesta_acceso = "Access granted-E" if direction == "0" else "Access granted-S"
 
-    return respuesta_acceso
+    in_out_data = "6."+str(key_db)+"."+str(access_data)+".11"
+
+    return [respuesta_acceso, in_out_data]
 
 
 def Recibir_Codigo_Accesso():

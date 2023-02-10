@@ -47,7 +47,7 @@ KEY_DISPO       = DISP + 'Key.txt'                                      # Datos 
 #---------------------------------------------------------------------------------------
 #                                  Firmware
 #---------------------------------------------------------------------------------------
-
+CONF_HUB        = FIRM + CONF + 'Config.json'                            # Configuraciones del hub global
 COM_FIRMWARE    = FIRM + COMMA + 'Firmware/Com_Firmware.txt'            # Configuraciones personalizadas del Firmware
 
 #---------------------------------------------------------------------------------------
@@ -80,12 +80,16 @@ COM_LED         = FIRM + COMMA + 'Led_RGB/Com_Led.txt'                  # Comand
 #---------------------------------------------------------------------------------------
 #                                  Rele dual
 #---------------------------------------------------------------------------------------
-
+"""
 CONF_TIEM_RELE  = FIRM + CONF + 'Rele/Tiempo_Rele.txt'                  # Configuracion rele
 CONF_DIREC_RELE = FIRM + CONF + 'Rele/Direccion_Rele.txt'               # Configuracion Direccion rele
 CONF_COMU_RELE  = FIRM + CONF + 'Rele/Tipo_Rele.txt'                    # Configuracion de tipo de relevos
 COM_TX_RELE     = FIRM + COMMA + 'Rele/Com_Tx_Rele.txt'                 # Comando de comunicaiones relevos serial
 COM_RELE        = FIRM + COMMA + 'Rele/Com_Rele.txt'                    # Comando relevos
+"""
+COM_RELE_S0            = FIRM + COMMA + 'Rele/Com_Rele_S0.txt'                             # Comando relevos
+COM_RELE_S1            = FIRM + COMMA + 'Rele/Com_Rele_S1.txt'                             # Comando relevos
+COM_RELE_S2            = FIRM + COMMA + 'Rele/Com_Rele_S2.txt'                             # Comando relevos
 
 #---------------------------------------------------------------------------------------
 #                                  Buzzer 5V

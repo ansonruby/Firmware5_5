@@ -43,9 +43,9 @@ from lib.Fun_Tipo_QR import *   #
 
 #-------------------------------------------------------
 # inicio de variable	--------------------------------------
-PSP_Mensajes = 1     # 0: NO print  1: Print
+PSP_Mensajes = 0     # 0: NO print  1: Print
 #-------------------------------------------------------
-
+T_Antes=0
 #-------------------------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------------------------
 #                   funciones para la peticion de usuarios
@@ -156,7 +156,7 @@ def Actualizar_Usuarios_Desde_server():
 def Intentos_Actualizar_Usuarios(Cantidad):
 	global PSP_Mensajes
 	Prioridad = Get_File(CONF_AUTORIZACION_QR).strip()
-	if Prioridad == '0' or Prioridad == '3':
+	if Prioridad == '0' or Prioridad == '3' or Prioridad == '2':
 
 		Set_File(COM_LED, '8')
 		for Intentos in range(Cantidad):
@@ -200,10 +200,10 @@ def Ping_Intento_Enviar_Usuarios_Autotizados():
     # ------- Prioridades de autorizacion ---------------------
     # 0 :   Servidor      -> Dispositivos -> sin counter    F1_17
     # 1 :   Counter       -> Dispositivos -> sin Servidor   offLine
-    # 2 :   Servidor      -> counter      -> Dispositivos   Nuevo
+    # 2 :   							  -> Dispositivos   Nuevo
     # 3 :   Counter       -> Servidor     -> Dispositivos   Nuevo
     # ---------------------------------------------------------
-	if Prioridad == '0' or Prioridad == '3':
+	if Prioridad == '0' or Prioridad == '3' or Prioridad == '2':
 		if PSP_Mensajes:	print 'avilitado comunicacion servidor'
 		Autorizaciones = Get_File(TAB_ENV_SERVER)
 		if len(Autorizaciones)>=1:
@@ -253,12 +253,25 @@ def Ping_Intento_Enviar_Usuarios_Autotizados():
 
 
 
+def Periodo_Actualizacion_Usuarios(Periodo):
+    global T_Antes,PSP_Mensajes
+    T_Actual = time.time()
+    T_transcurido = int(T_Actual-T_Antes)
+    #print 'T_Diferencia: ' + str(T_transcurido)
+    if T_transcurido >= Periodo :
+        if PSP_Mensajes: print 'Periodo_Actualizacion_Usuarios'
+        T_Antes = T_Antes = time.time()
+        Ping_Intento_Enviar_Usuarios_Autotizados()
+
 #---------------------------------------------------------
 #  Actualizar Usuarios al iniciar el proceso
 #---------------------------------------------------------
 print 'Ciclo principal Actualizacion de Usuarios'
 
 if PSP_Mensajes: print 'Prioridad: '+ str(Get_File(CONF_AUTORIZACION_QR))
+
+
+
 
 Intentos_Actualizar_Usuarios(3)
 
@@ -271,8 +284,9 @@ while 1:
 	#---------------------------------------------------------
 	# Proceso 2: Actualizar_Usuarios("12:10 AM") # 12:00 AM     03:59 PM # hora chile  10:00 PM 12:10 AM
 	#---------------------------------------------------------
-	if Get_File(CONF_AUTORIZACION_QR) == '0': Hora_Actualizacion_Usuarios("02:55 PM")
+	Hora_Actualizacion_Usuarios("02:05 AM")
 	#---------------------------------------------------------
 	#  Proceso 3:Enviar usuarios a servidor si hay y si esta en la funcion
 	#---------------------------------------------------------
-	Ping_Intento_Enviar_Usuarios_Autotizados()
+	#Ping_Intento_Enviar_Usuarios_Autotizados()
+	Periodo_Actualizacion_Usuarios(60*30)

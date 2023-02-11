@@ -15,7 +15,7 @@ import time
 #-------------------------------------------------------
 
 CE_V = 1          # 0: servidor de prueba 1: las direciones del aplicativo
-P_Mensajes=1     # 0: NO print  1: Print
+P_Mensajes=0     # 0: NO print  1: Print
 
 
 L_R_app =[      "/api/access/keyboard_access",      # Enviar Teclado
@@ -148,7 +148,7 @@ def Enviar_Usuarios(IP,T_actual,ID,Usuarios):
         print '-------------------------------------'
         print 'URL :'+ CE_url
         print 'Datos :'+ CE_datos
-    return Get_Post_try_catch('POST', CE_url, CE_datos, CE_cabeceras, 2)
+    return Get_Post_try_catch('POST', CE_url, CE_datos, CE_cabeceras, 10000)
 #-----------------------------------------------------------
 def Ping_Protocolo(IP, Protoc):
     IP_Pro = str(Protoc) + '://' + IP

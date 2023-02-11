@@ -29,8 +29,8 @@ def Filtro_Tipos_Acceso(access_code, medio_acceso=1, lectora=0):
         else:
             print "Invalid data of access"
     except Exception as e:
+        print e
         pass
-        # print e
 
 
 def Filtro_Tipos_QR_Antiguo(access_code, medio_acceso=1, lectora=0):
@@ -57,7 +57,6 @@ def Filtro_Tipos_QR_Antiguo(access_code, medio_acceso=1, lectora=0):
 
 
 def Validar_Acceso(access_data, tipo_acceso, medio_acceso, lectora):
-
     ans = False
     if medio_acceso == 1:
         ans = Validar_QR_Antiguo(access_data, tipo_acceso, lectora)
@@ -72,7 +71,7 @@ def Validar_Acceso(access_data, tipo_acceso, medio_acceso, lectora):
         respuesta_acceso, in_out_data = ans
         if respuesta_acceso != "Access denied":
             read_time = int(time.time()*1000)
-            direction = "0" if ans == "Access granted-E" else "1"
+            direction = "0" if respuesta_acceso == "Access granted-E" else "1"
 
             athorization_code = in_out_data + "."+str(read_time) + \
                 "."+str(medio_acceso) + "."+direction+"."+"1"
@@ -102,8 +101,8 @@ def Validar_QR_Antiguo(access_data, tipo_acceso, lectora):
 
             key_db = access_db.split(".")[0]
             if access_key == key_db:
-                read_time_sec = int(time.time())
                 if tipo_acceso == 4:
+                    read_time_sec = int(time.time())
                     if int(access_data[2]) < read_time_sec and int(access_data[3]) > read_time_sec:
                         access_valido = True
                 else:

@@ -36,8 +36,9 @@ def Get_Rout_server():#Mejor_Opcion_link
     IP_Ser      = Get_File(CONF_IP_SERVER)
     Domi_Ser    = Get_File(CONF_DOMI_SERVER)
 
-    # return 'http://192.168.104.160:3000'
+    #return 'http://192.168.0.46:3000'
     # return 'http://34.221.7.202'
+
     #print opciones
     #print Domi_Ser
     #print IP_Ser

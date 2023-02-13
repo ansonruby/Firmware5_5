@@ -285,7 +285,7 @@ while 1:
 	#---------------------------------------------------------
 	# Proceso 2: Actualizar_Usuarios("12:10 AM") # 12:00 AM     03:59 PM # hora chile  10:00 PM 12:10 AM
 	#---------------------------------------------------------
-	Hora_Actualizacion_Usuarios("02:05 AM")
+	Hora_Actualizacion_Usuarios("02:05 AM") # 02:05 AM
 	#---------------------------------------------------------
 	#  Proceso 3:Enviar usuarios a servidor si hay y si esta en la funcion
 	#---------------------------------------------------------

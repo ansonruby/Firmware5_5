@@ -241,6 +241,13 @@ def Restablecer(Datos, Comando):
         Set_File(PRO_WEB,'ok, Valores fabrica')
         time.sleep(3)
         Clear_File(PRO_WEB)
+        time.sleep(3)
+        if LMW_Mensajes:    print('ok, Reiniciando ')
+        Set_File(PRO_WEB,'ok, Reiniciando ')
+        time.sleep(3)
+        Clear_File(PRO_WEB)
+
+        commands.getoutput('sudo reboot') #------- reiniciando
         return 1
 
     if Datos[1].find("TS") != -1  :

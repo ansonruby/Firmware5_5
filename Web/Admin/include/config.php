@@ -5,9 +5,9 @@ define('SSH_PORT', '22'); //your ssh port, defailt is "22"
 define('SSH_USER', 'pi'); //your ssh username, default is "pi"
 define('SSH_PASS', 'fusepong2019'); //your ssh password, default is "raspberry"
 
-define('LOGIN_REQUIRED', false); 		// establecer en "true" si desea habilitar un sistema de inicio de sesión, o "false" para deshabilitarlo
+define('LOGIN_REQUIRED', true); 		// establecer en "true" si desea habilitar un sistema de inicio de sesión, o "false" para deshabilitarlo
 define('LOGIN_USER', 'pi'); 				//set username for login
-define('LOGIN_PASS', 'fusepong2021'); 	//set password for login
+define('LOGIN_PASS', 'fusepong2019'); 	//set password for login
 
 define('GUMCP_DEBUG', false); // cambia a verdadero para mostrar errores de PHP, o falso para ocultar errores
 
@@ -24,7 +24,7 @@ $gumcp_modules = array(
 	'Torniquete' => array(
 		'module_title' => 'Torniquete',
 		'module_index_file_relative_path' => './Torniquete.php',
-		'module_active' => 1, // cambie a 1 para habilitar el administrador de archivos y 0 para deshabilitarlo.
+		'module_active' => 0, // cambie a 1 para habilitar el administrador de archivos y 0 para deshabilitarlo.
 	),
 	'Comunicaciones' => array(
 		'module_title' => 'Comunicaciones',
@@ -34,7 +34,7 @@ $gumcp_modules = array(
 	'Firmware' => array(
 		'module_title' => 'Firmware',
 		'module_index_file_relative_path' => './Firmware.php',
-		'module_active' => 1, // cambie a 1 para habilitar el administrador de archivos y 0 para deshabilitarlo.
+		'module_active' => 0, // cambie a 1 para habilitar el administrador de archivos y 0 para deshabilitarlo.
 	),
 
 );

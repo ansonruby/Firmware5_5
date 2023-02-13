@@ -203,8 +203,10 @@
 
           <table class="table table-hover">
 					       <tbody>
+									 <!--
                    <tr><td><button type="submit" class="btn btn-default" value="Borrar_Historial"			onclick="Comandos(this.value);"><i class="fa fa-plus fa-lg"></i>Borrar Historial</button></td></tr>
                    <tr><td><button type="submit" class="btn btn-default" value="Borrar_Base_de_datos" onclick="Comandos(this.value);"><i class="fa fa-plus fa-lg"></i>Base de datos local</button></td></tr>
+									  -->
                    <tr><td><button type="submit" class="btn btn-default" value="Valores_de_fabrica"		onclick="Comandos(this.value);"><i class="fa fa-plus fa-lg"></i>Valores de fabrica</button></td></tr>
 
                 </tbody>
@@ -289,16 +291,17 @@
 			</div>
 
 			<!-- -------------- Configuración Counter -------------------------- -->
+			<!--
 			<div id="system-status" class="panel panel-default" style="margin-bottom: 5px">
 				<div class="panel-heading">
 					<h3 class="panel-title">Counter</h3>
 				</div>
 				<div class="panel-body">
 
-			<!-- --------------  -------------------------- -->
+
 
 			<form style="width: 100%;" class="create-button-form" id="formID" method="post" action="" class="formular" >
-				<!--
+
 				<table class="table table-hover">
 				<tbody>
 					<tr>
@@ -317,7 +320,7 @@
 
 				</tbody>
 				</table>
-				-->
+
 
 
 
@@ -464,7 +467,7 @@
 
 			</form>
 
-			<!-- ---------------------------------------------------------------- -->
+
 			<?php
 
 				if(!empty($message))
@@ -477,6 +480,8 @@
 
 				</div>
 			</div>
+
+			-->
 
 
 

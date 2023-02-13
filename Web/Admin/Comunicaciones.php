@@ -351,13 +351,14 @@ function   Wifis()
 
 
 			<!-- -------------- Configuración IP Counter  -------------------------- -->
+			<!--
 			<div id="system-status" class="panel panel-default" style="margin-bottom: 5px">
 				<div class="panel-heading">
 					<h3 class="panel-title">Configuración IP Counter</h3>
 				</div>
 				<div class="panel-body">
 
-			<!-- --------------  -------------------------- -->
+
 
 			<form style="width: 100%;" class="create-button-form" id="formID" method="post" action="" class="formular" >
 
@@ -374,7 +375,7 @@ function   Wifis()
 
 			</form>
 
-			<!-- ---------------------------------------------------------------- -->
+			
 			<?php
 				if(!empty($message2))
 				{
@@ -385,6 +386,8 @@ function   Wifis()
 
 				</div>
 			</div>
+
+			-->
 
 
 

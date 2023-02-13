@@ -142,7 +142,7 @@ def Permisos_Web():
     commands.getoutput('sudo chmod -R 775 /var/www/html')
     commands.getoutput('sudo chmod -R g+s /var/www/html')
     commands.getoutput('sudo chown -R pi /var/www/html')
-    commands.getoutput('sudo chown -R www-data /home/pi/Firmware/ComCounter/Counter/db/config.json')
+    #commands.getoutput('sudo chown -R www-data /home/pi/Firmware/ComCounter/Counter/db/config.json')
 #---------------------------------------------------------
 #----       Pagina restablecer metodo de restablecimeito
 #---------------------------------------------------------
@@ -205,6 +205,8 @@ def Restablecer(Datos, Comando):
         Clear_File(TAB_AUTO_TIPO_2_1)
         Clear_File(TAB_USER_TIPO_3)
         Clear_File(TAB_AUTO_TIPO_3)
+        Clear_File(TAB_USER_TIPO_6)
+        Clear_File(TAB_AUTO_TIPO_6)
 
         # ------    led RGB     -----
         Clear_File(COM_LED)
@@ -215,6 +217,7 @@ def Restablecer(Datos, Comando):
         Clear_File(COM_QR)
         Clear_File(STATUS_QR)
         Clear_File(STATUS_REPEAT_QR)
+        """
         # ------    Torniquete o rele    -----
         Clear_File(CONF_TIEM_RELE)
         Set_File(CONF_TIEM_RELE,'1')
@@ -228,6 +231,7 @@ def Restablecer(Datos, Comando):
         Clear_File(STATUS_TECLADO)
         Clear_File(CONF_FLECHA_TECLADO)
         Set_File(CONF_FLECHA_TECLADO,'1')
+        """
 
 
         #----------------------------------------------------

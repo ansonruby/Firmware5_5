@@ -38,6 +38,7 @@ from lib.Lib_Networks import *   #
 from lib.Fun_Dispositivo import *   #
 from lib.Fun_Server import *   #
 from lib.Fun_Tipo_QR import *   #
+from lib.Lib_Menu_Web import *  # importar con los mismos nombres
 
 #from lib.Verificar_Usuarios import *  # importar con los mismos nombres
 
@@ -272,7 +273,7 @@ if PSP_Mensajes: print 'Prioridad: '+ str(Get_File(CONF_AUTORIZACION_QR))
 
 
 
-
+Permisos_Web()
 Intentos_Actualizar_Usuarios(3)
 
 
@@ -290,3 +291,7 @@ while 1:
 	#---------------------------------------------------------
 	#Ping_Intento_Enviar_Usuarios_Autotizados()
 	Periodo_Actualizacion_Usuarios(60*30)
+	#---------------------------------------------------------
+	#  Proceso 3:revisar menu web
+	#---------------------------------------------------------
+	Resolver_Comando_Web()

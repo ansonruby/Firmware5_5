@@ -43,7 +43,7 @@ from lib.Fun_Tipo_QR import *   #
 #-------------------------------------------------------
 # inicio de variable	--------------------------------------
 
-PRS_Mensajes = 1     # 0: NO print  1: Print
+PRS_Mensajes = 0     # 0: NO print  1: Print
 
 """
 def Restablecer():
@@ -459,7 +459,7 @@ while 1:
             #print Validar_Dominio(Dominio_Serv)
             #Ip_Serv = Get_File(CONF_IP_SERVER).strip()
             #print Get_File(CONF_M_CONEX_SERVER)
-            
+
             Respuesta_Dominio = Validar_Dominio(Dominio_Serv)
             if Respuesta_Dominio != False:
                 if Ip_Serv  == Respuesta_Dominio:

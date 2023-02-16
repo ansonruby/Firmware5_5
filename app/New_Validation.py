@@ -101,7 +101,7 @@ def Validar_QR_Antiguo(access_data, tipo_acceso, lectora):
 
             key_db = access_db.split(".")[0]
             if access_key == key_db:
-                if tipo_acceso == 4:
+                if tipo_acceso == 4 and not lectora % 2:
                     read_time_sec = int(time.time())
                     if int(access_data[2]) < read_time_sec and int(access_data[3]) > read_time_sec:
                         access_valido = True
@@ -124,8 +124,8 @@ def Validar_QR_Antiguo(access_data, tipo_acceso, lectora):
     respuesta_acceso = "Access denied"
 
     if access_valido:
-        direction = str(lectora % 2)
-        respuesta_acceso = "Access granted-E" if direction == "0" else "Access granted-S"
+        direction = lectora % 2
+        respuesta_acceso = "Access granted-S" if direction else "Access granted-E"
 
     in_out_data = ".".join(access_data)
 
@@ -148,8 +148,8 @@ def Validar_PIN(access_data, tipo_acceso, lectora):
                 break
     respuesta_acceso = "Access denied"
     if access_valido:
-        direction = str(lectora % 2)
-        respuesta_acceso = "Access granted-E" if direction == "0" else "Access granted-S"
+        direction = lectora % 2
+        respuesta_acceso = "Access granted-S" if direction else "Access granted-E"
 
     in_out_data = "."+str(key_db)
 
@@ -172,8 +172,8 @@ def Validar_NFC(access_data, tipo_acceso, lectora):
                 break
     respuesta_acceso = "Access denied"
     if access_valido:
-        direction = str(lectora % 2)
-        respuesta_acceso = "Access granted-E" if direction == "0" else "Access granted-S"
+        direction = lectora % 2
+        respuesta_acceso = "Access granted-S" if direction else "Access granted-E"
 
     in_out_data = "6."+str(key_db)+"."+str(access_data)+".11"
 

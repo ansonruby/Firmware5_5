@@ -90,7 +90,7 @@ def Validar_QR_Antiguo(access_data, tipo_acceso, lectora):
     read_time_sec = int(time.time())
     if tipo_acceso in [1, 4]:
         access_code = decrypt_parts(access_data[0]).split("//")
-        if read_time_sec*1000 - int(access_code[1]) <= 8500:
+        if read_time_sec*1000 - int(access_code[1]) <= 9500:
             access_key = access_data[1]
             db = Get_File(TAB_USER_TIPO_1).strip().split("\n")
             for access_db in db:

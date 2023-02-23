@@ -260,9 +260,10 @@ def Periodo_Actualizacion_Usuarios(Periodo):
     T_transcurido = int(T_Actual-T_Antes)
     #print 'T_Diferencia: ' + str(T_transcurido)
     if T_transcurido >= Periodo :
-        if PSP_Mensajes: print 'Periodo_Actualizacion_Usuarios'
-        T_Antes = T_Antes = time.time()
-        Ping_Intento_Enviar_Usuarios_Autotizados()
+		if PSP_Mensajes: print 'Periodo_Actualizacion_Usuarios'
+		T_Antes = T_Antes = time.time()
+		Ping_Intento_Enviar_Usuarios_Autotizados()
+		Intentos_Actualizar_Usuarios(3)
 
 #---------------------------------------------------------
 #  Actualizar Usuarios al iniciar el proceso

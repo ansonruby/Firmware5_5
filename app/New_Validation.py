@@ -2,8 +2,11 @@ from lib.Lib_Rout import *
 from lib.Lib_File import Get_File, Clear_File, Add_Line_End, Set_File
 from lib.Fun_Tipo_NFC import MD5
 from lib.Lib_Threads import Create_Thread_Daemon
+from Crypto.Cipher import AES
 import time
 import re
+import base64
+import hashlib
 
 
 def Filtro_Tipos_Acceso(access_code, medio_acceso=1, lectora=0):
@@ -27,10 +30,9 @@ def Filtro_Tipos_Acceso(access_code, medio_acceso=1, lectora=0):
             Validar_Acceso(
                 access_code, tipo_acceso, medio_acceso, lectora)
         else:
-            print "Invalid data of access"
+            send_Mod_Respuesta("Access denied", lectora)
     except Exception as e:
-        print e
-        pass
+        send_Mod_Respuesta("Access denied", lectora)
 
 
 def Filtro_Tipos_QR_Antiguo(access_code, medio_acceso=1, lectora=0):
@@ -79,36 +81,31 @@ def Validar_Acceso(access_data, tipo_acceso, medio_acceso, lectora):
                 TAB_ENV_SERVER,
                 athorization_code+"\n"
             )
-    comand_res = [
-        COM_RES,
-        COM_RES_S1,
-        COM_RES_S2
-    ]
-
-    # Envio modulo respuesta
-    Set_File(comand_res[lectora], respuesta_acceso)
+    send_Mod_Respuesta(respuesta_acceso, lectora)
 
 
 def Validar_QR_Antiguo(access_data, tipo_acceso, lectora):
     access_valido = False
     access_key = False
+    read_time_sec = int(time.time())
     if tipo_acceso in [1, 4]:
-        access_key = access_data[1]
-        db = Get_File(TAB_USER_TIPO_1).strip().split("\n")
-        for access_db in db:
-            if access_data == "":
-                continue
+        access_code = decrypt_parts(access_data[0]).split("//")
+        if read_time_sec*1000 - int(access_code[1]) <= 8500:
+            access_key = access_data[1]
+            db = Get_File(TAB_USER_TIPO_1).strip().split("\n")
+            for access_db in db:
+                if access_db == "":
+                    continue
 
-            key_db = access_db.split(".")[0]
-            if access_key == key_db:
-                if tipo_acceso == 4 and not lectora % 2:
-                    read_time_sec = int(time.time())
-                    if int(access_data[2]) < read_time_sec and int(access_data[3]) > read_time_sec:
+                key_db = access_db.split(".")[0]
+                if access_key == key_db:
+                    if tipo_acceso == 4 and not lectora % 2:
+                        if int(access_data[2]) < read_time_sec and int(access_data[3]) > read_time_sec:
+                            access_valido = True
+                    else:
                         access_valido = True
-                else:
-                    access_valido = True
 
-                break
+                    break
     elif tipo_acceso == 3:
         access_key = ".".join(access_data[0:3])
         db = Get_File(TAB_USER_TIPO_3).strip().split("\n")
@@ -228,6 +225,29 @@ def Recibir_Codigo_Accesso():
         Create_Thread_Daemon(Filtro_Tipos_Acceso,
                              Get_File(COM_NFC_S2), 11, 2)
         Clear_File(STATUS_NFC_S2)
+
+
+def decrypt_parts(code):
+    try:
+        iv = base64.b64decode("G7qeaR2Yb4DAgk92ZQHdjQ==")
+        passphraseDgst = hashlib.sha256('ImAwesomeAndHappy'.encode()).digest()
+        cipher = AES.new(passphraseDgst, AES.MODE_CBC, iv)
+        encrypted = base64.b64decode(code)
+        data = str(cipher.decrypt(encrypted)).split('"')[1]
+        return data
+    except:
+        return None
+
+
+def send_Mod_Respuesta(respuesta_acceso, lectora):
+    comand_res = [
+        COM_RES,
+        COM_RES_S1,
+        COM_RES_S2
+    ]
+
+    # Envio modulo respuesta
+    Set_File(comand_res[lectora], respuesta_acceso)
 
 
 while True:

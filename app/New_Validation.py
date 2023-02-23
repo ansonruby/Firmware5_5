@@ -229,8 +229,9 @@ def Recibir_Codigo_Accesso():
 
 def decrypt_parts(code):
     try:
-        iv = base64.b64decode("G7qeaR2Yb4DAgk92ZQHdjQ==")
-        passphraseDgst = hashlib.sha256('ImAwesomeAndHappy'.encode()).digest()
+        key1, key2 = Get_File(KEY_DISPO).strip().split("\n")
+        iv = base64.b64decode(key1)
+        passphraseDgst = hashlib.sha256(key2.encode()).digest()
         cipher = AES.new(passphraseDgst, AES.MODE_CBC, iv)
         encrypted = base64.b64decode(code)
         data = str(cipher.decrypt(encrypted)).split('"')[1]
